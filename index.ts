@@ -122,9 +122,9 @@ function initMap(): void {
   const map = new google.maps.Map(
     document.getElementById("map") as HTMLElement,
     {
-      zoom: 8,
+      zoom: 14,
       center: path[1],
-      mapTypeId: "terrain",
+      mapTypeId: "hybrid",
     }
   );
 
@@ -143,8 +143,8 @@ function displayPathElevation(
   // Display a polyline of the elevation path.
   new google.maps.Polyline({
     path: path,
-    strokeColor: "#0000CC",
-    strokeOpacity: 0.4,
+    strokeColor: "#CC0077",
+    strokeOpacity: 0.9,
     map: map,
   });
 
@@ -190,10 +190,10 @@ function plotElevation({ results }: google.maps.PathElevationResponse) {
 
   // Draw the chart using the data within its DIV.
   chart.draw(data, {
-    height: 150,
+    height: 350,
     legend: "none",
     // @ts-ignore TODO update to newest visualization library
-    titleY: "Elevation (m)",
+    titleY: "Altitude (m)",
   });
 }
 
