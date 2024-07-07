@@ -184,8 +184,12 @@ function plotElevation({ results }: google.maps.PathElevationResponse) {
   data.addColumn("string", "Sample");
   data.addColumn("number", "Elevation");
 
+  let deniv = 0
   for (let i = 0; i < results.length; i++) {
     data.addRow(["", results[i].elevation]);
+    if (i) {
+      deniv += Math.abs(results[i].elevation - results[i-1].elevation)
+    }
   }
 
   // Draw the chart using the data within its DIV.
@@ -194,6 +198,7 @@ function plotElevation({ results }: google.maps.PathElevationResponse) {
     legend: "none",
     // @ts-ignore TODO update to newest visualization library
     titleY: "Altitude (m)",
+    title: `Dénivelé ${Math.round(deniv)} m`,
   });
 }
 
